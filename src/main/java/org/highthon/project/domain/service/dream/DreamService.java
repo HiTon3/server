@@ -17,7 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DreamService {
   private final UserRepository userRepository;
-//  private final DreamRepository dreamRepository;
+  private final DreamRepository dreamRepository;
 
   @Transactional
   public void save(DreamSaveRequest request) {
@@ -33,22 +33,22 @@ public class DreamService {
     user.addDream(dream);
   }
 
-//  @Transactional(readOnly = true)
-//  public List<Dream> getDreams(String userName) {
-//    System.out.println("check1");
-//    User user = userRepository.findByUserName(userName);
-//    System.out.println("user = " + user);
-//    System.out.println("check2");
-//
-//    if(user == null) {
-//      throw new GlobalException(ErrorCode.USER_NOT_FOUND);
-//    }
-//    System.out.println("check3");
-//
-//    List<Dream> dreamList = dreamRepository.findDreamByUserName(userName);
-//
-//    System.out.println("check4");
-//    System.out.println("dreamList = " + dreamList);
-//    return dreamList;
-//  }
+  @Transactional(readOnly = true)
+  public List<Dream> getDreams(String userName) {
+    System.out.println("check1");
+    User user = userRepository.findByUserName(userName);
+    System.out.println("user = " + user);
+    System.out.println("check2");
+
+    if(user == null) {
+      throw new GlobalException(ErrorCode.USER_NOT_FOUND);
+    }
+    System.out.println("check3");
+
+    List<Dream> dreamList = dreamRepository.findDreamByUserName(userName);
+
+    System.out.println("check4");
+    System.out.println("dreamList = " + dreamList);
+    return dreamList;
+  }
 }

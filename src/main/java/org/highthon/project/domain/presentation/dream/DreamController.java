@@ -19,9 +19,9 @@ public class DreamController {
     dreamService.save(request);
   }
 
-//  @GetMapping("/read")
-//  public List<Dream> read(@RequestParam("name") String userName) {
-//    List<Dream> dreamList = dreamService.getDreams(userName);
-//    return dreamList;
-//  }
+  @GetMapping("/read")
+  public List<Dream> read(@RequestParam("name") String userName) {
+    List<Dream> dreamList = dreamService.getDreams(userName);
+    return dreamList;
+  }
 }

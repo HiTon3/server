@@ -12,6 +12,7 @@ import org.highthon.project.global.utils.jwt.JwtUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Objects;
 import java.util.regex.Pattern;
@@ -35,6 +36,7 @@ public class AuthService {
     return pattern.matcher(email).matches();
   }
 
+  @Transactional
   public void register(SignUpRequest dto) throws GlobalException {
     String email = dto.getEmail();
     boolean isEmailRight = validate(email);
@@ -53,8 +55,8 @@ public class AuthService {
     userRepository.save(user);
   }
 
+  @Transactional
   public LoginResponse login(LoginRequest dto) {
-
     String email = dto.getEmail();
     System.out.println("email = " + email);
     String password = dto.getPassword();
