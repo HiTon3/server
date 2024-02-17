@@ -1,7 +1,6 @@
 package org.highthon.project.global.config;
 
 import lombok.RequiredArgsConstructor;
-import org.highthon.project.domain.service.CustomOAuth2UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -15,7 +14,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
-  private final CustomOAuth2UserService oAuth2UserService;
+
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http
@@ -26,12 +25,7 @@ public class SecurityConfig {
       .authorizeHttpRequests(
         auth -> auth
           .requestMatchers("/api/**").permitAll()
-          .anyRequest().authenticated()
-      )
-      .oauth2Login(
-        oauth2 -> oauth2.userInfoEndpoint(
-          userInfoEndpointConfig -> userInfoEndpointConfig.userService(oAuth2UserService)
-        )
+          .anyRequest().permitAll()
       )
       .sessionManagement(
         session -> session.sessionCreationPolicy(

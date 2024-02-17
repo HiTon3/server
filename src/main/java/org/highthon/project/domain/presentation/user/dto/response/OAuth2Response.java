@@ -1,4 +1,4 @@
-package org.highthon.project.domain.presentation.dto.response;
+package org.highthon.project.domain.presentation.user.dto.response;
 
 public interface OAuth2Response {
   String getProvider();

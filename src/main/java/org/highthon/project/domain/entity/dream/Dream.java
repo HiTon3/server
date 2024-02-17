@@ -5,9 +5,7 @@ import lombok.*;
 import org.highthon.project.domain.entity.dream.types.Category;
 import org.highthon.project.domain.entity.user.User;
 
-import java.sql.Blob;
-
-@Entity
+@Entity(name = "dream")
 @Table
 @Getter
 @ToString
@@ -17,18 +15,21 @@ public class Dream {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   @Lob
-  private byte[] image;
+  private String image;
   @Lob
-  private Blob video;
+  private String video;
   @Enumerated(EnumType.STRING)
   private Category category;
   private String text;
   @ManyToOne
   @JoinColumn(name = "user_id")
   private User userId;
+  public void setUserId(User userId) {
+    this.userId = userId;
+  }
 
   @Builder
-  public Dream(Long id, byte[] image, Blob video, Category category, String text, User userId) {
+  public Dream(Long id, String image, String video, Category category, String text, User userId) {
     this.id = id;
     this.image = image;
     this.video = video;

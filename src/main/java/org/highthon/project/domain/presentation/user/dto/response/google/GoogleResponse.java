@@ -1,6 +1,6 @@
-package org.highthon.project.domain.presentation.dto.response.google;
+package org.highthon.project.domain.presentation.user.dto.response.google;
 
-import org.highthon.project.domain.presentation.dto.response.OAuth2Response;
+import org.highthon.project.domain.presentation.user.dto.response.OAuth2Response;
 
 import java.util.Map;
 
