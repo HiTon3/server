@@ -17,8 +17,8 @@ public class User {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private String email;
-  private String name;
   private String userName;
+  private String password;
   private String role;
   @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL, orphanRemoval = true /** User가 삭제되면 Dream 객체도 삭제*/)
   private List<Dream> dreamList;
@@ -28,11 +28,11 @@ public class User {
   }
 
   @Builder
-  public User(Long id, String email, String name, String userName, String role) {
+  public User(Long id, String email, String userName, String password, String role) {
     this.id = id;
     this.email = email;
-    this.name = name;
     this.userName = userName;
+    this.password = password;
     this.role = role;
   }
 }

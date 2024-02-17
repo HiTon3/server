@@ -5,8 +5,8 @@ import lombok.*;
 import org.highthon.project.domain.entity.dream.types.Category;
 import org.highthon.project.domain.entity.user.User;
 
-@Entity(name = "dream")
-@Table
+@Entity
+@Table(name = "dream")
 @Getter
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
