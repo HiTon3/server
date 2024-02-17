@@ -5,6 +5,8 @@ import lombok.Getter;
 import org.highthon.project.domain.entity.dream.Dream;
 import org.highthon.project.domain.entity.dream.types.Category;
 
+import java.sql.Blob;
+
 @Getter
 @AllArgsConstructor
 public class DreamSaveRequest {
@@ -12,6 +14,7 @@ public class DreamSaveRequest {
   private String video;
   private String category;
   private String text;
+  private String dreamText;
   private String userName;
 
   public Dream toEntity() {
@@ -20,6 +23,7 @@ public class DreamSaveRequest {
       .video(video)
       .category(Category.valueOf(category))
       .text(text)
+      .dreamText(dreamText)
       .build();
   }
 }

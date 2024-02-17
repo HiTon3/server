@@ -49,6 +49,7 @@ public class DreamService {
         .image(dream.getImage())
         .video(dream.getVideo())
         .text(dream.getText())
+        .dreamText(dream.getDreamText())
         .category(dream.getCategory())
         .build();
 

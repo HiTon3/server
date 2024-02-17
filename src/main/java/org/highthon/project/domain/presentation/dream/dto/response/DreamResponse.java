@@ -12,5 +12,6 @@ public class DreamResponse {
   private String image;
   private String video;
   private String text;
+  private String dreamText;
   private Category category;
 }
