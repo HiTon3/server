@@ -9,7 +9,7 @@ import java.util.List;
 @Entity(name ="user")
 @Table
 @Getter
-@ToString
+//@ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User {
   @Id

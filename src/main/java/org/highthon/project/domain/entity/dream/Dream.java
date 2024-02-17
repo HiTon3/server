@@ -8,7 +8,7 @@ import org.highthon.project.domain.entity.user.User;
 @Entity
 @Table(name = "dream")
 @Getter
-@ToString
+//@ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Dream {
   @Id
