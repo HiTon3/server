@@ -20,8 +20,9 @@ public class DreamController {
   }
 
   @GetMapping("/read")
-  public List<Dream> read(@RequestParam("name") String userName) {
-    List<Dream> dreamList = dreamService.getDreams(userName);
+  public List<Dream> read(@RequestParam("userId") Long userId) {
+    List<Dream> dreamList = dreamService.getDreams(userId);
+    System.out.println("dreamList = " + dreamList);
     return dreamList;
   }
 }

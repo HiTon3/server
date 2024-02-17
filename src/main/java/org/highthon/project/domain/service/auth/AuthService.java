@@ -88,7 +88,8 @@ public class AuthService {
     System.out.println("token = " + token);
     return new LoginResponse(
       token,
-      user.getUserName()
+      user.getUserName(),
+      user.getId()
     );
   }
 }

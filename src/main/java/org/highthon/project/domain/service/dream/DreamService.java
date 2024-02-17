@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -21,9 +22,9 @@ public class DreamService {
 
   @Transactional
   public void save(DreamSaveRequest request) {
-    String userId = String.valueOf(request.getUserName());
+    String userName = request.getUserName();
 
-    User user = userRepository.findByUserName(userId);
+    User user = userRepository.findByUserName(userName);
 
     if (user == null) {
       throw new GlobalException(ErrorCode.USER_NOT_FOUND);
@@ -34,20 +35,8 @@ public class DreamService {
   }
 
   @Transactional(readOnly = true)
-  public List<Dream> getDreams(String userName) {
-    System.out.println("check1");
-    User user = userRepository.findByUserName(userName);
-    System.out.println("user = " + user);
-    System.out.println("check2");
-
-    if(user == null) {
-      throw new GlobalException(ErrorCode.USER_NOT_FOUND);
-    }
-    System.out.println("check3");
-
-    List<Dream> dreamList = dreamRepository.findDreamByUserName(userName);
-
-    System.out.println("check4");
+  public List<Dream> getDreams(Long userId) {
+    List<Dream> dreamList = dreamRepository.findDreamsByUserId(userId);
     System.out.println("dreamList = " + dreamList);
     return dreamList;
   }

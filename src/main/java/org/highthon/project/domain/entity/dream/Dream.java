@@ -21,7 +21,7 @@ public class Dream {
   @Enumerated(EnumType.STRING)
   private Category category;
   private String text;
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id")
   private User userId;
   public void setUserId(User userId) {
