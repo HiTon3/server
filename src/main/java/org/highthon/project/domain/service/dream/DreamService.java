@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -25,14 +24,18 @@ public class DreamService {
   @Transactional
   public void save(DreamSaveRequest request) {
     String userName = request.getUserName();
+    System.out.println("userName = " + userName);
 
-    User user = userRepository.findByUserName(userName);
+    User user = userRepository.findByUserName(userName); //
+    System.out.println("user = " + user);
 
     if (user == null) {
       throw new GlobalException(ErrorCode.USER_NOT_FOUND);
     }
+    System.out.println("user = " + user);
 
     Dream dream = request.toEntity();
+    System.out.println("dream = " + dream);
     user.addDream(dream);
   }
 
@@ -44,7 +47,7 @@ public class DreamService {
     System.out.println("dreamList = " + dreamList);
     List<DreamResponse> dreamResponseList = new ArrayList<>();
 
-    for(DreamResponse dream : dreamList) {
+    for (DreamResponse dream : dreamList) {
       DreamResponse dto = DreamResponse.builder()
         .image(dream.getImage())
         .video(dream.getVideo())
@@ -55,6 +58,31 @@ public class DreamService {
 
       dreamResponseList.add(dto);
     }
+    return dreamResponseList;
+  }
+
+  @Transactional(readOnly = true)
+  public List<DreamResponse> getList() {
+    List<Dream> dreamList = dreamRepository.findAll();
+    System.out.println("dreamList = " + dreamList);
+
+    List<DreamResponse> dreamResponseList = new ArrayList<>();
+    System.out.println("dreamResponseList = " + dreamResponseList);
+
+    for (Dream dream : dreamList) {
+      System.out.println("dream = " + dream);
+      DreamResponse dto = DreamResponse.builder()
+        .image(dream.getImage())
+        .video(dream.getVideo())
+        .text(dream.getText())
+        .dreamText(dream.getDreamText())
+        .category(dream.getCategory())
+        .build();
+
+      dreamResponseList.add(dto);
+      System.out.println("dto = " + dto);
+    }
+    System.out.println("dreamResponseList = " + dreamResponseList);
     return dreamResponseList;
   }
 }

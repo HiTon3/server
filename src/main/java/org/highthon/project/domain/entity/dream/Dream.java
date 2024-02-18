@@ -22,7 +22,7 @@ public class Dream {
   private String video;
   @Enumerated(EnumType.STRING)
   private Category category;
-  @Column(length = 500)
+  @Column(length = 100000)
   private String text;
   private String dreamText;
   @ManyToOne(fetch = FetchType.LAZY)

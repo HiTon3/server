@@ -1,7 +1,6 @@
 package org.highthon.project.domain.presentation.dream;
 
 import lombok.RequiredArgsConstructor;
-import org.highthon.project.domain.entity.dream.Dream;
 import org.highthon.project.domain.presentation.dream.dto.request.DreamSaveRequest;
 import org.highthon.project.domain.presentation.dream.dto.response.DreamResponse;
 import org.highthon.project.domain.service.dream.DreamService;
@@ -25,5 +24,11 @@ public class DreamController {
     List<DreamResponse> dreamList = dreamService.getDreams(userId);
     System.out.println("dreamList = " + dreamList);
     return dreamList;
+  }
+
+  @GetMapping("/all")
+  public List<DreamResponse> read() {
+    List<DreamResponse> dreamResponseList = dreamService.getList();
+    return dreamResponseList;
   }
 }
